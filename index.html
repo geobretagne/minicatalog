@@ -1,0 +1,178 @@
+﻿<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="lib/bootstrap.min.css">
+        <script src="lib/jquery-3.4.1.min.js"></script>
+        <script src="lib/popper.min.js"></script>
+        <script src="lib/bootstrap.min.js"></script>
+    
+        <!-- other libs -->
+        <script src="lib/papaparse.min.js"></script>
+        <script src="lib/jsrender.min.js"></script>
+        <script src="lib/fuse.min.js"></script>
+        <script src="lib/md5.min.js"></script>
+    
+        <!-- code -->
+        <script src="catalog.js"></script>
+
+        <title>Catalogue</title>
+    
+        <style>
+    body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+        </style>
+    </head>
+    <body>
+  
+        <!-- title and nav -->
+        <nav class="navbar fixed-top navbar-dark bg-dark justify-content-between">
+            <a href="." class="navbar-brand cat-title">Catalogue</a>
+            <form class="form-inline" id="formSearch">
+                <input class="form-control mr-sm-2 cat-searchinput" name="search" type="search" id="search" placeholder="texte ou #mot-clef" aria-label="Filtrer" />
+                <div class="btn-group" role="group">         
+                    <button class="btn btn-clear my-2 my-sm-0 cat-searchReset" type="reset">Effacer</button>
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Trouver</button>
+                </div>
+            </form>
+        </nav>
+        
+        <!-- alert box -->
+        <div class="container-fluid">
+            <div class="alert alert-primary" role="alert">
+            Ce service est en phase de construction !<span class="glyphicon glyphicon-trash"></span>&nbsp;
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- tag list -->
+                    <div class="text-left" id="tagList">
+                        
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- results summary-->
+                    <div class="text-right">
+                        <span class="badge badge-primary" id="searchCount"></span> ressources trouvées
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- md list -->
+        <div class="container-fluid pull-right">
+            <div class="row" id="mdList">
+            </div>
+        </div>
+
+
+
+    <!-- 
+    templates 
+    -->
+    
+    <!-- md template -->
+    <script id="mdTemplate" type="text/x-jsrender">
+    <div class="col-sm-12 col-lg-4 mt-4">
+        <div class="card  h-100">
+            <!-- elements importants -->
+            <div class="card-header">
+                <h4 class="card-title text-truncate">
+                    <!-- dc:title -->
+                    <a href="#" data-toggle="modal" data-target="#md-{{:id}}" target="_blank">{{:title}}</a>
+                </h4>
+                <!-- dc:publisher -->
+                <h6 class="card-subtitle mb-2 text-muted text-truncate">{{:publisher}}</h6>
+            </div>
+            <div class="card-body">
+                <p>
+                    <!-- dc:subject -->
+                    {{for subject}}
+                    <a href="#" class="badge badge-light cat-mdsearchtag">{{:}}</a>
+                    {{/for}}
+                </p>
+                <!-- dc:description -->
+                <p class="card-text">{{:description}}</p>
+
+            </div>
+            <div class="card-footer">
+                <!-- acces button -->
+                <a class="btn btn-outline-primary" href="{{:identifier}}" target="_blank">Accéder</a>
+
+                <!-- details button -->
+                <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#md-{{:id}}">
+                    Détails
+                </button>
+            </div>
+            
+            
+
+            <!-- infos detaillees -->
+            <div class="modal fade" id="md-{{:id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- dc:title -->
+                            <h4 class="modal-title" id="exampleModalLabel">{{:title}}</h4>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        
+                            <!-- attributs -->
+                            <ul>
+                                <li>Service fourni par {{:publisher}}</li>
+                                <li>Statut : {{:status}}</li>                   
+                                <!-- dc:subject -->
+                                <li>Mots-clefs :
+                                {{for subject}}
+                                    <span class="badge badge-light">{{:}}</span>
+                                {{/for}}
+                                </li>
+                            </ul>
+                            
+                            <!-- dc:description -->
+                            <p>{{:description}}</p>
+                            <!-- dc:source -->
+                            
+                            <!-- meta:who -->
+                            <h5>Pour qui est ce service ?</h5>
+                            <p>{{:who}}</p>
+                            
+                            <!-- meta:why -->
+                            <h5>A quoi sert ce service ?</h5>
+                            <p>{{:why}}</p>
+                            <!-- meta:how -->
+                            
+                            <h5>Comment utiliser ce service ?</h5>
+                            <p>{{:how}}</p>
+                            
+                            <!-- meta:help -->
+                            <h5>Où trouver de l'aide ?</h5>
+                            <p><a href="{{:help}}" target="_blank">{{:help}}</a></p>
+                        </div>
+                        
+
+                        <div class="modal-footer">
+                            <a class="btn btn-outline-primary" href="{{:identifier}}" target="_blank">Accéder</a>
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </script>
+    
+  </body>
+</html>
