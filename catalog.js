@@ -94,9 +94,14 @@ class MD {
                 
         // comma separated keywords, prefixed with #
         var subject = this.subject;
-        $.each(obj.subject.split(","), function(i, value) {
-            subject.push("#" + value.trim().toLowerCase());
-        });
+        if (subject) {
+            $.each(obj.subject.split(","), function(i, value) {
+                subject.push("#" + value.trim().toLowerCase());
+            });
+        }
+        else {
+            subject.push("#missing metadata");
+        }
     }
     
     /**
