@@ -26,7 +26,7 @@ class MD {
 
         // 4.2 Subject : The topic of the content of the resource.
         // Typically, a Subject will be expressed as keywords or key phrases or classification codes that describe the topic of the resource. Recommended best practice is to select a value from a controlled vocabulary or formal classification scheme.
-        this.subject = obj.subject ? [] : ["missing subject"];
+        this.subject = obj.subject ? obj.subject.trim() : "missing subject";
 
         // 4.3 Description : An account of the content of the resource.
         // Description may include but is not limited to: an abstract, table of contents, reference to a graphical representation of content or a free-text account of the content.
