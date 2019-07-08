@@ -46,6 +46,8 @@
         <!-- alert box -->
         <div class="container-fluid">
             <div class="alert alert-primary" role="alert">
+            <a class="btn btn-secondary active" href="https://partage.e2.rie.gouv.fr/ethercalc/si_dreal_outils" target="_blank">édition</a>
+
             Ce service est en phase de construction !<span class="glyphicon glyphicon-trash"></span>&nbsp;
             </div>
         </div>
@@ -131,8 +133,9 @@
                         
                             <!-- attributs -->
                             <ul>
+                                <!-- dc:source -->
                                 <li>Service fourni par {{:publisher}}</li>
-                                <li>Statut : {{:status}}</li>                   
+
                                 <!-- dc:subject -->
                                 <li>Mots-clefs :
                                 {{for subject}}
@@ -143,22 +146,21 @@
                             
                             <!-- dc:description -->
                             <p>{{:description}}</p>
-                            <!-- dc:source -->
-                            
-                            <!-- meta:who -->
-                            <h5>Pour qui est ce service ?</h5>
-                            <p>{{:who}}</p>
-                            
+
                             <!-- meta:why -->
-                            <h5>A quoi sert ce service ?</h5>
                             <p>{{:why}}</p>
-                            <!-- meta:how -->
+
+
+                            <!-- meta:audience -->
+                            <h5>Pour qui ?</h5>
+                            <p>{{:audience}}</p>
                             
-                            <h5>Comment utiliser ce service ?</h5>
+                            <!-- meta:how -->
+                            <h5>Comment ?</h5>
                             <p>{{:how}}</p>
                             
                             <!-- meta:help -->
-                            <h5>Où trouver de l'aide ?</h5>
+                            <h5>Aide ?</h5>
                             <p><a href="{{:help}}" target="_blank">{{:help}}</a></p>
                         </div>
                         
