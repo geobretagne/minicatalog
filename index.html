@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -89,7 +89,7 @@
             <div class="card-header">
                 <h4 class="card-title text-truncate">
                     <!-- dc:title -->
-                    <a href="#" data-toggle="modal" data-target="#md-{{:id}}" target="_blank">{{:title}}</a>
+                    {{:title}}
                 </h4>
                 <!-- dc:publisher -->
                 <h6 class="card-subtitle mb-2 text-muted text-truncate">{{:publisher}}</h6>
@@ -129,20 +129,17 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                        
-                            <!-- attributs -->
-                            <ul>
-                                <!-- dc:source -->
-                                <li>Service fourni par {{:publisher}}</li>
 
-                                <!-- dc:subject -->
-                                <li>Mots-clefs :
-                                {{for subject}}
-                                    <span class="badge badge-light">{{:}}</span>
-                                {{/for}}
-                                </li>
-                            </ul>
+                        <div class="modal-header">
+                            <!-- dc:subject -->
+                            {{for subject}}
+                                <span class="badge badge-light">{{:}}</span>
+                            {{/for}}
+                        </div>
+
+
+
+                        <div class="modal-body">
                             
                             <!-- dc:description -->
                             <p>{{:description}}</p>
@@ -150,18 +147,33 @@
                             <!-- meta:why -->
                             <p>{{:why}}</p>
 
+                            <hr />
 
                             <!-- meta:audience -->
                             <h5>Pour qui ?</h5>
                             <p>{{:audience}}</p>
+
+                            <hr />
                             
                             <!-- meta:how -->
                             <h5>Comment ?</h5>
                             <p>{{:how}}</p>
                             
+                            <hr /> 
+
                             <!-- meta:help -->
                             <h5>Aide ?</h5>
                             <p><a href="{{:help}}" target="_blank">{{:help}}</a></p>
+                              
+                            <hr />
+
+                            <!-- attributs -->
+                            <ul class="text-secondary">
+                                <!-- dc:source -->
+                                <li>service fourni par {{:publisher}}</li>
+                                <li>conception {{:creator}}</li>
+                            </ul>
+
                         </div>
                         
 

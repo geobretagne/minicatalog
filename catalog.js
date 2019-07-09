@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Catalog
  * Lightweight catalog for organizations using myriads of web apps for lost users.
  * Metadatas comme from a CSV file (we use ethercalc as editor)
